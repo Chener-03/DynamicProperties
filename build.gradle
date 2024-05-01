@@ -1,0 +1,33 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.9.23'
+}
+
+group = 'xyz.chener.ext.dp'
+version = '1.0'
+
+ext {
+    versionSnapshot = version + '-SNAPSHOT'
+    versionRelease = version + '-RELEASE'
+}
+
+dependencies {
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.slf4j:slf4j-api:2.0.13'
+
+    implementation 'org.yaml:snakeyaml:2.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    implementation 'org.springframework:spring-core:6.1.6'
+}
+
+test {
+    useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(21)
+}
+
+tasks.register('buildReleaseJar') {
+    version = versionRelease
+    dependsOn jar
+}
