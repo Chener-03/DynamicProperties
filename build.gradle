@@ -37,6 +37,10 @@ task sourcesJar(type: Jar) {
 }
 
 
+def accountFile = file('codeup_account.properties')
+def account = new Properties()
+account.load(accountFile.newDataInputStream())
+
 publishing {
     publications {
         mvRelease(MavenPublication) {
@@ -52,6 +56,13 @@ publishing {
     }
     repositories {
         mavenLocal()
+        maven {
+            url = 'https://packages.aliyun.com/maven/repository/2290302-snapshot-SmWcL1/'
+            credentials {
+                username = account['debug.username']
+                password = account['debug.password']
+            }
+        }
     }
 }
 
