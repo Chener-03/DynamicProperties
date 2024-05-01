@@ -4,6 +4,7 @@ plugins {
 }
 
 group = 'xyz.chener.ext.dp'
+
 version = '1.0'
 
 ext {
@@ -28,7 +29,31 @@ kotlin {
     jvmToolchain(21)
 }
 
-tasks.register('buildReleaseJar') {
-    version = versionRelease
-    dependsOn jar
+
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    archiveClassifier = 'sources'
 }
+
+
+publishing {
+    publications {
+        mvRelease(MavenPublication) {
+            version = versionRelease
+            from components.java
+            artifact sourcesJar
+        }
+        mvDebug(MavenPublication) {
+            version = versionSnapshot
+            from components.java
+            artifact sourcesJar
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
+
+
+
