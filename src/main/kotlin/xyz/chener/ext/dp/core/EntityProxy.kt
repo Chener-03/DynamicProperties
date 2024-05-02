@@ -3,7 +3,6 @@ package xyz.chener.ext.dp.core
 import org.springframework.cglib.proxy.MethodInterceptor
 import org.springframework.cglib.proxy.MethodProxy
 import java.lang.reflect.Method
-import kotlin.reflect.jvm.kotlinFunction
 
 open class EntityProxy(obj: Any) : MethodInterceptor {
 

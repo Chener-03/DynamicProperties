@@ -2,12 +2,15 @@ package xyz.chener.ext.dp
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import xyz.chener.ext.dp.core.DynamicProperties
+import xyz.chener.ext.dp.core.ListenerType
 
 class TestImpl {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val load = DynamicProperties("test.properties", TestJavaEntity::class.java).load{
+
+
+            val load = DynamicProperties("test.properties", TestJavaEntity::class.java,ListenerType.WatchService).load{
                 println("配置改变")
             }
             while (true){
