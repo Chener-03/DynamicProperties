@@ -5,7 +5,7 @@ plugins {
 
 group = 'xyz.chener.ext.dp'
 
-version = '1.0'
+version = '1.1'
 
 ext {
     versionSnapshot = version + '-SNAPSHOT'
